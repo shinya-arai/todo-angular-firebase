@@ -7,15 +7,16 @@ import { TodoService } from '../todo.service';
   styleUrls: ['./todo-form.component.scss']
 })
 export class TodoFormComponent implements OnInit {
-  public todo: string;
+  content: string;
 
   constructor(private todoService: TodoService) { }
 
   ngOnInit() {
+    console.log(this.todoService.todos);
   }
 
-  console(): void {
-    console.log('hello');
+  add(todo: string): void {
+    this.todoService.add(todo);
   }
 
 }
