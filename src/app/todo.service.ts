@@ -5,13 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class TodoService {
 
-  constructor() { }
-
-  todo: string;
-
   todos: string[];
 
+  constructor() { }
+
   add(todo: string): void {
-    this.todos.push(todo); 
+    this.todos.push(todo);
   }
 }
