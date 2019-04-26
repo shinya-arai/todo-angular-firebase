@@ -12,11 +12,11 @@ export class TodoFormComponent implements OnInit {
   constructor(private todoService: TodoService) { }
 
   ngOnInit() {
-    console.log(this.todoService.todos);
   }
 
-  add(todo: string): void {
-    this.todoService.add(todo);
+  add(content: string): void {
+    this.todoService.add(content);
+    this.content = '';
   }
 
 }

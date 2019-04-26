@@ -1,1 +1,7 @@
-<div *ngIf="todoContent">{{ todoContent }}</div>
+<ul *ngIf="contents">
+  <li *ngFor="let content of contents; let i=index">
+    {{ content }}
+    <span (click)="delete(i)">[x]</span>
+    <span routerLink="/detail">[edit]</span>
+  </li>
+</ul>
