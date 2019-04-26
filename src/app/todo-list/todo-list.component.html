@@ -1,7 +1,9 @@
 <ul *ngIf="contents">
-  <li *ngFor="let content of contents; let i=index">
-    {{ content }}
-    <span (click)="delete(i)">[x]</span>
-    <span routerLink="/detail">[edit]</span>
-  </li>
+  <ng-container *ngFor="let content of contents; let i=index">
+    <li>
+      {{ content }}
+      <span (click)="delete(i)">[x]</span>
+      <span [routerLink]="['detail', i]">[edit]</span>
+    </li>
+  </ng-container>
 </ul>
