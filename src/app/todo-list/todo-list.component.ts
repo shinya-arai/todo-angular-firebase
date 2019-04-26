@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Input } from '@angular/core';
 import { TodoService } from '../todo.service';
 
 
@@ -9,12 +8,16 @@ import { TodoService } from '../todo.service';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  @Input() todoContent: string;
-  todo;
+  contents;
 
   constructor(private todoService: TodoService) { }
 
   ngOnInit() {
+    this.contents = this.todoService.todos;
+  }
+
+  delete(i: number): void {
+    this.todoService.delete(i);
   }
 
 }
