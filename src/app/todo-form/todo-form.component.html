@@ -1,3 +1,7 @@
-<input [(ngModel)]="content"/>
-<button (click)="add(content)">add todo!</button>
+<div style="display: flex;">
+  <form (ngSubmit)="add(content)">
+    <input name="content" [(ngModel)]="content"/>
+  </form>
+  <button (click)="add(content)">add todo!</button>
+</div>
 <app-todo-list></app-todo-list>

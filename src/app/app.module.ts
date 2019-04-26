@@ -13,7 +13,7 @@ const routes: Routes = [
     path: '', component: TodoFormComponent,
   },
   {
-    path: 'detail', component: TodoDetailComponent
+    path: 'detail/:id', component: TodoDetailComponent
   }
 ];
 
