@@ -26,7 +26,7 @@ export class TodoService {
     return of(this.todos[i]);
   }
 
-  // update(i: number, content: string): Todo[] {
-  //   return this.todos = this.todos.map(todo => todo === this.todos[i] ? content : todo);
-  // }
+  update(i: number, content: string): Todo[] {
+    return this.todos = this.todos.map(todo => todo === this.todos[i] ? content : todo);
+  }
 }
