@@ -21,7 +21,11 @@ export class TodoService {
     this.todos.splice(i, 1);
   }
 
-  get(i: number): Observable<string> {
+  getContent(i: number): Observable<string> {
     return of(this.todos[i]);
+  }
+
+  update(i: number, content: string): string[] {
+    return this.todos = this.todos.map(todo => todo === this.todos[i] ? content : todo);
   }
 }
