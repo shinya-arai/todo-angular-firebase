@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../../todo.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
+import { Todo } from '../../class/todo';
 
 @Component({
   selector: 'app-todo-detail',
@@ -20,8 +21,8 @@ export class TodoDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.todoService.getContent(params.id).subscribe((content: string) => {
-        this.content = content;
+      this.todoService.getContent(params.id).subscribe((todo: Todo) => {
+        this.content = todo.content;
       });
     });
   }
