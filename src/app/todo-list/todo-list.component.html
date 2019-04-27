@@ -1,7 +1,11 @@
 <ul *ngIf="contents">
   <ng-container *ngFor="let content of contents; let i=index">
     <li>
-      {{ content }}
+      <span 
+        (click)="checkContent()"
+      >
+        {{ content }}
+      </span>
       <span (click)="delete(i)">[x]</span>
       <span [routerLink]="['detail', i]">[detail]</span>
     </li>
