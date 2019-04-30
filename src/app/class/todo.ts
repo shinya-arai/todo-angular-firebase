@@ -1,9 +1,9 @@
 export class Todo {
   content: string;
-  check: boolean;
+  state: boolean;
 
-  constructor(content: string, check: boolean) {
+  constructor(content: string, state: boolean) {
     this.content = content;
-    this.check = check;
+    this.state = state;
   }
 }

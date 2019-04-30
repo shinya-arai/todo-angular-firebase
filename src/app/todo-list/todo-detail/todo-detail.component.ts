@@ -17,7 +17,7 @@ export class TodoDetailComponent implements OnInit {
     // private router: Router,
     private route: ActivatedRoute,
     private location: Location,
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
@@ -28,7 +28,6 @@ export class TodoDetailComponent implements OnInit {
   }
 
   saveAndBack(): void {
-    console.log(this.content);
     this.route.params.subscribe((params: Params) => {
       this.todoService.update(params.id, this.content);
     });

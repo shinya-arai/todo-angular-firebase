@@ -9,18 +9,23 @@ import { Todo } from '../class/todo';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  contents: Todo[];
+  todos: Todo[];
 
   constructor(private todoService: TodoService) { }
 
   ngOnInit() {
-    this.todoService.showList().subscribe((contents: Todo[]) => {
-      this.contents = contents;
+    this.todoService.showList().subscribe((todos: Todo[]) => {
+      this.todos = todos;
     });
   }
 
   delete(i: number): void {
     this.todoService.delete(i);
+    console.log(this.todoService.todos);
+  }
+
+  changeState(i: number): void {
+    this.todoService.changeState(i);
   }
 
 }

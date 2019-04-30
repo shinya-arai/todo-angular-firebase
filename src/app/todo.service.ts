@@ -26,7 +26,13 @@ export class TodoService {
     return of(this.todos[i]);
   }
 
-  update(i: number, content: string): Todo[] {
-    return this.todos = this.todos.map(todo => todo === this.todos[i] ? content : todo);
+  update(i: number, content: string): Observable<Todo[]> {
+    this.todos[i].content = content;
+
+    return of(this.todos);
+  }
+
+  changeState(i: number): void {
+    this.todos[i].state = !this.todos[i].state;
   }
 }

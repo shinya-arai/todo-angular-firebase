@@ -1,10 +1,11 @@
-<ul *ngIf="contents">
-  <ng-container *ngFor="let content of contents; let i=index">
+<ul *ngIf="todos">
+  <ng-container *ngFor="let todo of todos; let i=index">
     <li>
       <span 
-        (click)="checkContent()"
+        (click)="changeState(i)"
+        [class.state]="todo.state"
       >
-        {{ content }}
+        {{ todo.content }}
       </span>
       <span (click)="delete(i)">[x]</span>
       <span [routerLink]="['detail', i]">[detail]</span>
