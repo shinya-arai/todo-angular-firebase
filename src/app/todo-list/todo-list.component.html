@@ -1,5 +1,5 @@
 <ul *ngIf="todos">
-  <ng-container *ngFor="let todo of todos; let i=index">
+  <ng-container *ngFor="let todo of todos | async; let i=index">
     <li>
       <span 
         (click)="changeState(i)"
