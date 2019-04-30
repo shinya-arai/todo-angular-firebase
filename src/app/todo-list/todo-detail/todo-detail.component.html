@@ -1,2 +1,4 @@
-<input type="text" [(ngModel)]="content">
+<form (ngSubmit)="saveAndBack()">
+  <input type="text" name="content" [(ngModel)]="content">
+</form>
 <button (click)="saveAndBack()">save and back!</button>

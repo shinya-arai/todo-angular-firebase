@@ -11,29 +11,22 @@ import { Observable } from 'rxjs';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  // todos: Todo[];
-  todos: Observable<any[]>;
+  todos;
 
-  constructor(
-    private todoService: TodoService,
-    private db: AngularFirestore,
-  ) {
-    this.todos = db.collection('todos').valueChanges();
-  }
+  constructor(private todoService: TodoService) { }
 
   ngOnInit() {
-    // this.todoService.showList().subscribe((todos: Todo[]) => {
-    //   this.todos = todos;
-    // });
+    this.todoService.readTodos();
+
+    this.todos = this.todoService.todos;
   }
 
-  delete(i: number): void {
-    this.todoService.delete(i);
-    console.log(this.todoService.todos);
+  deleteTodo(todo: Todo): void {
+    this.todoService.deleteTodo(todo);
   }
 
-  changeState(i: number): void {
-    this.todoService.changeState(i);
+  changeState(id: string, content: string, state: boolean): void {
+    this.todoService.changeState(id, content, state);
   }
 
 }

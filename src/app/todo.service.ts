@@ -1,38 +1,70 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Todo } from './class/todo';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument
+ } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-  todos: Todo[] = [];
+  private todosCollection: AngularFirestoreCollection<Todo>;
+  private todoDocument: AngularFirestoreDocument<Todo>;
+  todos: Observable<Todo[]>;
+  todo: Observable<Todo>;
 
-  constructor() { }
-
-  showList(): Observable<Todo[]> {
-    return of(this.todos);
+  constructor(private afs: AngularFirestore) {
+    this.todosCollection = afs.collection<Todo>('todos');
   }
 
-  add(content: string): void {
-    this.todos.push(new Todo(content, false));
+  readTodos(): void {
+    this.todos = this.todosCollection.valueChanges();
   }
 
-  delete(i: number): void {
-    this.todos.splice(i, 1);
+  addTodo(content: string): void {
+    const id = this.afs.createId();
+    const todo: Todo = {
+      id,
+      content,
+      state: false,
+    };
+
+    this.todosCollection.doc(id).set(todo);
   }
 
-  getContent(i: number): Observable<Todo> {
-    return of(this.todos[i]);
+  deleteTodo(todo: Todo): void {
+    this.todosCollection.doc(todo.id).delete();
   }
 
-  update(i: number, content: string): Observable<Todo[]> {
-    this.todos[i].content = content;
+  getTodo(id: string): Observable<Todo> {
+    this.todoDocument = this.afs.doc<Todo>(`todos/${id}`);
+    this.todo = this.todoDocument.valueChanges();
 
-    return of(this.todos);
+    return this.todo;
   }
 
-  changeState(i: number): void {
-    this.todos[i].state = !this.todos[i].state;
+  update(id: string, content: string): Observable<Todo[]> {
+    const todo: Todo = {
+      id,
+      content,
+      state: false
+    };
+
+    this.todosCollection.doc(id).update(todo);
+
+    return this.todos;
   }
+
+  changeState(id: string, content: string, state: boolean): void {
+    const todo: Todo = {
+      id,
+      content,
+      state: !state
+    };
+
+    this.todosCollection.doc(id).update(todo);
+    }
 }

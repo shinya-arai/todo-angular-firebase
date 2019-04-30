@@ -14,8 +14,8 @@ export class TodoFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  add(content: string): void {
-    this.todoService.add(content);
+  addTodo(content: string): void {
+    this.todoService.addTodo(content);
     this.content = '';
   }
 
