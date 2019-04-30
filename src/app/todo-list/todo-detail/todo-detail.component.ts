@@ -11,6 +11,7 @@ import { Todo } from '../../class/todo';
 })
 export class TodoDetailComponent implements OnInit {
   content;
+  state;
 
   constructor(
     private todoService: TodoService,
@@ -22,13 +23,14 @@ export class TodoDetailComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.todoService.getTodo(params.id).subscribe((todo: Todo) => {
         this.content = todo.content;
+        this.state = todo.state;
       });
     });
   }
 
   saveAndBack(): void {
     this.route.params.subscribe((params: Params) => {
-      this.todoService.update(params.id, this.content);
+      this.todoService.update(params.id, this.content, this.state);
     });
     this.location.back();
   }
