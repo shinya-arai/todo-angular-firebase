@@ -1,14 +1,14 @@
 <ul *ngIf="todos">
-  <ng-container *ngFor="let todo of todos | async; let i=index">
+  <ng-container *ngFor="let todo of (todos | async); let i=index">
     <li>
       <span 
-        (click)="changeState(i)"
+        (click)="changeState(todo.id, todo.content, todo.state)"
         [class.state]="todo.state"
       >
         {{ todo.content }}
       </span>
-      <span (click)="delete(i)">[x]</span>
-      <span [routerLink]="['detail', i]">[detail]</span>
+      <button (click)="deleteTodo(todo)">delete</button>
+      <button [routerLink]="['detail', todo.id]">edit</button>
     </li>
   </ng-container>
 </ul>

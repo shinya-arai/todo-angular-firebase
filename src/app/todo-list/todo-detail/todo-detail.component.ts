@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../../todo.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { Todo } from '../../class/todo';
 
@@ -10,18 +10,17 @@ import { Todo } from '../../class/todo';
   styleUrls: ['./todo-detail.component.scss']
 })
 export class TodoDetailComponent implements OnInit {
-  content: string;
+  content;
 
   constructor(
     private todoService: TodoService,
-    // private router: Router,
     private route: ActivatedRoute,
     private location: Location,
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.todoService.getContent(params.id).subscribe((todo: Todo) => {
+      this.todoService.getTodo(params.id).subscribe((todo: Todo) => {
         this.content = todo.content;
       });
     });
@@ -31,7 +30,6 @@ export class TodoDetailComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.todoService.update(params.id, this.content);
     });
-    // this.router.navigate(['/']);
     this.location.back();
   }
 
