@@ -46,11 +46,11 @@ export class TodoService {
     return this.todo;
   }
 
-  update(id: string, content: string): Observable<Todo[]> {
+  update(id: string, content: string, state: boolean): Observable<Todo[]> {
     const todo: Todo = {
       id,
       content,
-      state: false
+      state,
     };
 
     this.todosCollection.doc(id).update(todo);
@@ -62,7 +62,7 @@ export class TodoService {
     const todo: Todo = {
       id,
       content,
-      state: !state
+      state: !state,
     };
 
     this.todosCollection.doc(id).update(todo);
